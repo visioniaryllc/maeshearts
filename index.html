@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" type="image/png" sizes="32x32" href="img/icon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="img/icon-512.png">
+<link rel="apple-touch-icon" href="img/icon-180.png">
+<meta property="og:title" content="Maes Hearts | Audiobook Narrator">
+<meta property="og:description" content="Your new favorite voice. Stories that stay. Voices that touch. Hearts that connect.">
+<meta property="og:image" content="img/logo.jpg">
+<meta name="twitter:card" content="summary">
+<title>Maes Hearts</title>
+<meta name="description" content="Maes Hearts, audiobook narrator. Your new favorite voice.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Pinyon+Script&display=swap">
+<style>
+/* Maes Hearts: a dark romance novel. Candlelight, velvet, blood-red roses, gold leaf.
+   Deliberately a single dark theme. */
+:root{
+  color-scheme:dark;
+  --ink:#070405;
+  --velvet:#12070A;
+  --wine:#2B070E;
+  --blood:#780000;      /* logo: deep rose red */
+  --rose:#D80000;       /* logo: MAES red */
+  --rose-soft:#E8483F;  /* softer red for small text on black */
+  --blush:#E9A3A3;
+  --gold:#FCC06C;       /* logo: Hearts gold */
+  --gold-hi:#FCC06C;
+  --parchment:#F0CC9C;  /* logo: cream */
+  --text:#E7D9C6;
+  --dim:#A99485;
+  --hair:rgba(252,192,108,.28);
+  --head:"Playfair Display",Didot,"Bodoni 72",Georgia,serif;
+  --book:"EB Garamond",Garamond,"Times New Roman",serif;
+  --script:"Pinyon Script","Snell Roundhand",cursive;
+}
+[hidden]{display:none!important}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+body{margin:0;color:var(--text);font:400 19px/1.7 var(--book);-webkit-font-smoothing:antialiased;
+  background:
+    radial-gradient(120% 60% at 50% 0%,rgba(120,0,0,.32),transparent 60%),
+    radial-gradient(90% 50% at 50% 100%,rgba(120,0,0,.18),transparent 70%),
+    var(--ink)}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:2px solid var(--gold-hi);outline-offset:3px;border-radius:4px}
+.wrap{max-width:1100px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+.narrow{max-width:700px;margin:0 auto;padding-inline:clamp(16px,4vw,40px)}
+h1,h2,h3{margin:0;text-wrap:balance}
+p{margin:0}
+#petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}
+main,header,footer,.topbar{position:relative;z-index:2}
+
+/* small caps label */
+.sc{font:500 .78rem/1 var(--book);letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+/* ornamental divider */
+.flourish{display:flex;align-items:center;justify-content:center;gap:14px;color:var(--gold);margin-block:clamp(18px,3vw,28px)}
+.flourish::before,.flourish::after{content:"";height:1px;width:min(140px,26vw);background:linear-gradient(90deg,transparent,var(--gold))}
+.flourish::after{background:linear-gradient(270deg,transparent,var(--gold))}
+.flourish svg{width:22px;height:22px;fill:var(--rose);filter:drop-shadow(0 0 8px rgba(216,0,0,.6))}
+
+/* chapter heading */
+.chapter{text-align:center;display:grid;gap:10px;justify-items:center;margin-bottom:clamp(28px,5vw,48px)}
+.chapter .num{display:flex;align-items:center;gap:12px;font:italic 400 clamp(1.15rem,2vw,1.35rem)/1 var(--head);letter-spacing:.06em;color:var(--rose-soft)}
+.chapter .num i{font-style:normal;font-weight:500;letter-spacing:.12em;margin-left:.15em}
+.chapter .num::before,.chapter .num::after{content:"";width:36px;height:1px;background:linear-gradient(90deg,transparent,var(--rose))}
+.chapter .num::after{background:linear-gradient(270deg,transparent,var(--rose))}
+.chapter h2{font:italic 500 clamp(2.2rem,5.4vw,3.8rem)/1.08 var(--head);color:var(--parchment)}
+.chapter h2 .s{font:400 1.18em/1 var(--script);color:var(--gold-hi);font-style:normal}
+.chapter p{color:var(--dim);font-style:italic;font-size:1.08rem;max-width:52ch}
+section{padding-block:clamp(70px,11vw,130px);scroll-margin-top:70px}
+
+/* top bar: centered wordmark, links on either side */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:linear-gradient(rgba(7,4,5,.94),rgba(7,4,5,.82));backdrop-filter:blur(8px);border-bottom:1px solid var(--hair)}
+.topbar .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;height:68px;column-gap:clamp(28px,4vw,52px)}
+.topbar nav{display:flex;gap:clamp(16px,2.6vw,34px)}
+.topbar nav.left{justify-content:flex-end}
+.topbar nav.right{justify-content:flex-start}
+.topbar nav a{font:500 .78rem/1 var(--book);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;color:var(--dim)}
+.topbar nav a:hover{color:var(--gold-hi)}
+.mark{text-decoration:none;text-align:center;line-height:1}
+.mark b{display:block;font:500 1rem/1 var(--head);letter-spacing:.3em;margin-right:-.3em;color:var(--rose-soft)}
+.mark i{display:block;font:400 1.6rem/.8 var(--script);color:var(--gold-hi);font-style:normal;margin-top:-2px}
+.topbar .book-mobile{display:none}
+@media (max-width:860px){
+  .topbar .wrap{grid-template-columns:auto 1fr}
+  .topbar nav{display:none}
+  .mark{text-align:left}
+  .topbar .book-mobile{display:inline-flex;justify-self:end}
+}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font:500 .82rem/1 var(--book);letter-spacing:.24em;text-transform:uppercase;padding:16px 26px;border-radius:2px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:background .25s,box-shadow .25s,color .25s}
+.btn svg{width:13px;height:13px;fill:currentColor}
+.btn-blood{background:var(--blood);color:var(--parchment);border-color:rgba(252,192,108,.35);box-shadow:inset 0 0 0 4px rgba(7,4,5,.25),0 12px 40px -14px rgba(216,0,0,.8)}
+.btn-blood:hover{background:#9A0000;box-shadow:inset 0 0 0 4px rgba(7,4,5,.25),0 16px 50px -12px rgba(216,0,0,.95)}
+.btn-gilt{border-color:var(--gold);color:var(--gold-hi);background:transparent}
+.btn-gilt:hover{background:rgba(252,192,108,.1)}
+.topbar .btn{padding:11px 16px;font-size:.7rem;letter-spacing:.18em}
+
+/* PROLOGUE / hero */
+.prologue{text-align:center;padding-block:clamp(36px,6vw,72px) clamp(56px,8vw,96px)}
+.prologue .sc{display:block;margin-bottom:clamp(16px,3vw,26px)}
+.title{display:inline-grid;justify-items:center;gap:clamp(10px,1.8vw,18px);line-height:1}
+.title .tie{display:block;width:min(340px,62%);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.title .maes{display:block;font:400 clamp(3.8rem,13vw,9.4rem)/.9 var(--head);letter-spacing:.16em;margin-right:-.16em;color:var(--rose);
+  background:linear-gradient(180deg,#F03A2E 0%,var(--rose) 45%,var(--blood) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 4px 28px rgba(216,0,0,.35))}
+.title .hearts{display:block;font:400 clamp(3rem,8.4vw,6rem)/1.1 var(--script);color:var(--gold-hi);padding-inline:.15em;text-shadow:0 0 30px rgba(252,192,108,.25)}
+.cameo-row{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(20px,4vw,56px);margin-top:clamp(28px,5vw,48px)}
+.whisper{font:italic 400 clamp(1.15rem,2vw,1.5rem)/1.35 var(--head);color:var(--dim)}
+.whisper.l{text-align:right}
+.whisper.r{text-align:left}
+.whisper b{display:block;font-weight:500;color:var(--parchment)}
+.cameo{position:relative;width:clamp(240px,30vw,340px);aspect-ratio:4/5;border-radius:50%;padding:10px;
+  background:conic-gradient(from 200deg,#8a5a1c,var(--gold),#a06a24,#FDE0B0,#7a4e18,var(--gold),#8a5a1c);
+  box-shadow:0 0 0 1px rgba(252,192,108,.4),0 0 80px -10px rgba(216,0,0,.55),0 40px 80px -30px #000}
+.cameo img{width:100%;height:100%;object-fit:cover;object-position:50% 22%;border-radius:50%;border:3px solid var(--ink)}
+.cameo .rose{position:absolute;bottom:-6px;left:50%;transform:translateX(-50%);width:54px;height:54px;border-radius:50%;background:radial-gradient(circle at 35% 35%,var(--rose),var(--blood) 60%,#3C0000);display:grid;place-items:center;box-shadow:0 6px 18px rgba(0,0,0,.6),0 0 0 2px var(--gold)}
+.cameo .rose svg{width:22px;height:22px;fill:var(--gold-hi)}
+@media (max-width:760px){
+  .cameo-row{grid-template-columns:1fr}
+  .cameo{justify-self:center;order:-1}
+  .whisper.l,.whisper.r{text-align:center}
+}
+.tagline{margin-top:clamp(28px,5vw,44px);font:400 clamp(2rem,4.6vw,3.2rem)/1.1 var(--script);color:var(--gold-hi)}
+.tagline small{display:block;font:italic 400 clamp(1rem,1.6vw,1.15rem)/1.6 var(--head);color:var(--dim);margin-top:10px}
+.prologue .actions{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:30px}
+
+/* CHAPTER ONE / the voice */
+.voice-seal{width:clamp(220px,32vw,300px);aspect-ratio:1;border-radius:50%;overflow:hidden;margin:0 auto clamp(28px,4vw,40px);background:#000;box-shadow:0 0 70px -12px rgba(216,0,0,.6)}
+.voice-seal img{width:100%;height:100%;object-fit:cover;transform:scale(1.1)}
+.opening{font:italic 400 clamp(1.7rem,3.6vw,2.5rem)/1.3 var(--head);color:var(--parchment);text-align:center;margin-bottom:clamp(28px,4vw,40px)}
+.opening em{color:var(--rose);font-style:italic}
+.prose{display:grid;gap:1.1em;font-size:1.12rem;color:var(--text);hyphens:auto}
+.prose .triad{display:grid;gap:4px;text-align:center;font:italic 500 clamp(1.25rem,2.4vw,1.55rem)/1.4 var(--head);color:var(--gold-hi);padding-block:12px}
+.particulars{margin-top:clamp(30px,5vw,48px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));text-align:center;border-block:1px solid var(--hair)}
+.particulars div{padding:20px 14px;display:grid;gap:6px;align-content:start}
+.particulars div+div{border-left:1px solid var(--hair)}
+.particulars dt{font:500 .72rem/1 var(--book);letter-spacing:.28em;text-transform:uppercase;color:var(--dim)}
+.particulars dd{margin:0;font:italic 500 1.1rem/1.45 var(--head);color:var(--parchment)}
+.particulars dd span:not(:last-child)::after{content:"\00a0·";color:var(--rose)}
+@media (max-width:560px){.particulars{grid-template-columns:1fr}.particulars div+div{border-left:0;border-top:1px solid var(--hair)}}
+
+/* CHAPTER TWO / table of contents */
+.contents-wrap{background:linear-gradient(180deg,transparent,rgba(43,7,14,.55) 20%,rgba(43,7,14,.55) 80%,transparent)}
+.toc{list-style:none;margin:0 auto;padding:0;max-width:760px;display:grid;gap:clamp(22px,3vw,30px)}
+.toc li{display:grid;gap:4px}
+.toc .line{display:flex;align-items:baseline;gap:12px}
+.toc .t{font:italic 500 clamp(1.35rem,2.8vw,1.85rem)/1.2 var(--head);color:var(--parchment);white-space:nowrap}
+.toc .dots{flex:1;border-bottom:2px dotted rgba(252,192,108,.45);transform:translateY(-6px);min-width:20px}
+.toc .pg{font:500 1.1rem/1 var(--head);color:var(--rose-soft);letter-spacing:.06em}
+.toc .d{color:var(--dim);font-size:1.02rem;font-style:italic;max-width:56ch}
+@media (max-width:520px){.toc .t{white-space:normal}}
+.feelings{margin-top:clamp(40px,6vw,64px);text-align:center;font:400 clamp(1.7rem,3.6vw,2.4rem)/1.5 var(--script);color:var(--gold-hi)}
+.feelings span{white-space:nowrap}
+.feelings span:not(:last-child)::after{content:" ♥ ";font:400 .5em/1 var(--book);color:var(--rose);vertical-align:.35em;margin-inline:.35em}
+
+/* CHAPTER THREE / the collection */
+.shelf{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:26px}
+.book{display:grid;gap:10px;align-content:start;text-align:center}
+.book .cover{aspect-ratio:1/1;border-radius:3px 8px 8px 3px;overflow:hidden;background:var(--wine);box-shadow:inset 6px 0 10px -6px rgba(0,0,0,.8),0 24px 40px -20px #000;border:1px solid var(--hair)}
+.book .cover img{width:100%;height:100%;object-fit:cover}
+.book h3{font:italic 500 1.2rem/1.25 var(--head);color:var(--parchment)}
+.book .by{font-size:.98rem;color:var(--dim)}
+.book .part{font:500 .7rem/1.4 var(--book);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.book .soon{font:500 .72rem/1 var(--book);letter-spacing:.22em;text-transform:uppercase;color:var(--rose-soft)}
+.soon-wrap{margin-top:clamp(50px,7vw,80px);text-align:center}
+.soon-head{font:italic 500 clamp(1.8rem,3.6vw,2.6rem)/1.1 var(--head);color:var(--parchment)}
+.soon-head .s{font:400 1.25em/1 var(--script);color:var(--gold-hi);font-style:normal}
+.soon-lede{color:var(--dim);font-style:italic;margin:8px 0 clamp(26px,4vw,40px)}
+.book .cover{position:relative}
+.book .cover.blank{display:grid;place-content:center;gap:10px;padding:18px;text-align:center;background:radial-gradient(80% 80% at 50% 40%,var(--wine),#0B0507 75%)}
+.book .cover.blank .bt{font:italic 500 clamp(1.25rem,2vw,1.5rem)/1.2 var(--head);color:var(--parchment)}
+.book .cover.blank .ba{font:500 .68rem/1 var(--book);letter-spacing:.26em;text-transform:uppercase;color:var(--gold)}
+.book .cover.blank svg{width:18px;height:18px;fill:var(--rose);justify-self:center}
+.book .play{position:absolute;left:50%;bottom:14px;transform:translateX(-50%);width:54px;height:54px;border-radius:50%;border:0;cursor:pointer;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,var(--rose),var(--blood) 55%,#3C0000);box-shadow:0 0 0 3px rgba(120,0,0,.45),0 10px 22px rgba(0,0,0,.7);transition:transform .2s}
+.book .play:hover{transform:translateX(-50%) scale(1.06)}
+.book .play svg{width:22px;height:22px;filter:drop-shadow(0 1px 0 rgba(60,0,0,.8)) drop-shadow(0 0 4px rgba(252,192,108,.45))}
+.book .play .i-pause{display:none}
+.book.playing .play .i-play{display:none}
+.book.playing .play .i-pause{display:block}
+.book.cover-blank-play .cover.blank{padding-bottom:84px}
+.sample{display:grid;gap:5px}
+.sample .bar{height:3px;border-radius:3px;background:rgba(252,192,108,.22);overflow:hidden;cursor:pointer}
+.sample .bar i{display:block;height:100%;width:0;background:var(--gold-hi)}
+.sample .time{font:400 .8rem/1 var(--book);color:var(--dim);font-variant-numeric:tabular-nums}
+.book a.listen{justify-self:center;font:500 .76rem/1 var(--book);letter-spacing:.22em;text-transform:uppercase;color:var(--gold-hi);text-decoration:none;border-bottom:1px solid var(--gold);padding-bottom:4px}
+.awaiting{max-width:640px;margin:0 auto;text-align:center;display:grid;gap:18px;justify-items:center}
+.candle{width:64px;height:120px}
+.candle .flame{transform-origin:50% 90%;animation:flicker 2.6s ease-in-out infinite}
+@keyframes flicker{0%,100%{transform:scale(1) rotate(0)}25%{transform:scale(1.04,.96) rotate(-2deg)}50%{transform:scale(.97,1.05) rotate(1.5deg)}75%{transform:scale(1.02,.98) rotate(-1deg)}}
+.awaiting h3{font:italic 500 clamp(1.6rem,3vw,2.1rem)/1.2 var(--head);color:var(--parchment)}
+.awaiting p{color:var(--dim);font-style:italic}
+.awaiting .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:6px}
+
+/* CHAPTER FOUR / a letter */
+.terms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;max-width:820px;margin:0 auto clamp(40px,6vw,60px);border-top:1px solid var(--hair)}
+.terms div{padding:20px 22px;border-bottom:1px solid var(--hair);display:grid;gap:4px;text-align:center}
+.terms div:nth-child(odd){border-right:1px solid var(--hair)}
+.terms b{font:italic 500 1.3rem/1.25 var(--head);color:var(--parchment)}
+.terms span{color:var(--dim);font-size:1rem}
+@media (max-width:620px){.terms{grid-template-columns:1fr}.terms div:nth-child(odd){border-right:0}}
+.letter{position:relative;max-width:760px;margin:0 auto;padding:clamp(28px,5vw,56px) clamp(22px,5vw,60px) clamp(40px,6vw,64px);
+  background:
+    radial-gradient(120% 80% at 50% 0%,rgba(252,192,108,.07),transparent 60%),
+    linear-gradient(180deg,#1A0B0E,#120709);
+  border:1px solid rgba(252,192,108,.45);border-radius:4px;
+  box-shadow:inset 0 0 0 8px #120709,inset 0 0 0 9px rgba(252,192,108,.25),0 50px 100px -40px rgba(216,0,0,.45)}
+.letter .salutation{font:400 clamp(2.4rem,5vw,3.2rem)/1 var(--script);color:var(--gold-hi);margin-bottom:6px}
+.letter .intro{font-style:italic;color:var(--dim);margin-bottom:26px}
+.letter form{display:grid;gap:20px}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:580px){.pair{grid-template-columns:1fr}}
+.f{display:grid;gap:4px;min-width:0}
+.f label,.legend{font:500 .74rem/1.2 var(--book);letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.f .hint{text-transform:none;letter-spacing:0;font-style:italic;color:var(--dim);font-size:.95rem}
+input,select,textarea{font:400 1.12rem/1.4 var(--book);color:var(--parchment);background:transparent;border:0;border-bottom:1px solid rgba(252,192,108,.4);border-radius:0;padding:8px 2px 10px;width:100%}
+select{background:#150A0C;border:1px solid rgba(252,192,108,.3);border-radius:2px;padding:9px 10px}
+input::placeholder,textarea::placeholder{color:#6f5d55;font-style:italic}
+textarea{min-height:120px;resize:vertical;border:1px solid rgba(252,192,108,.3);border-radius:2px;padding:12px;line-height:1.6;
+  background:repeating-linear-gradient(transparent 0 31px,rgba(252,192,108,.12) 31px 32px)}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--rose);box-shadow:0 1px 0 0 var(--rose)}
+textarea:focus,select:focus{box-shadow:0 0 0 1px var(--rose)}
+.choices{display:flex;flex-wrap:wrap;gap:6px 20px;padding-top:6px}
+.choices label{display:flex;align-items:center;gap:8px;font:italic 400 1.08rem/1.3 var(--head);color:var(--text);cursor:pointer;text-transform:none;letter-spacing:0}
+.choices input{width:auto;margin:0;accent-color:var(--rose)}
+.est{font-style:italic;color:var(--dim);font-size:1rem;text-align:center;padding:12px;border-block:1px dashed rgba(252,192,108,.3)}
+.est b{font:500 1.5rem/1 var(--head);color:var(--gold-hi);font-style:normal;font-variant-numeric:tabular-nums}
+.err{color:#FF9AA0;font-style:italic;text-align:center}
+.sign{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-top:8px}
+.sign .with{font:400 1.9rem/1 var(--script);color:var(--gold-hi)}
+.seal{display:inline-flex;align-items:center;gap:14px;background:none;border:0;cursor:pointer;color:var(--parchment);font:500 .82rem/1 var(--book);letter-spacing:.24em;text-transform:uppercase;padding:0}
+.seal .wax{width:68px;height:68px;border-radius:50%;display:grid;place-items:center;
+  background:radial-gradient(circle at 35% 30%,var(--rose),var(--blood) 55%,#3C0000);
+  box-shadow:0 0 0 3px rgba(120,0,0,.5),0 0 0 6px rgba(120,0,0,.18),0 10px 24px rgba(0,0,0,.7),inset 0 -4px 8px rgba(0,0,0,.4);
+  transition:transform .25s}
+.seal .wax svg{width:26px;height:26px;fill:none;stroke:var(--gold-hi);stroke-width:1.4}
+.seal:hover .wax{transform:rotate(-8deg) scale(1.05)}
+.seal[disabled]{opacity:.6;cursor:wait}
+.done{display:grid;gap:16px;text-align:center}
+.done h3{font:italic 500 1.9rem/1.2 var(--head);color:var(--parchment)}
+.done pre{margin:0;text-align:left;white-space:pre-wrap;font:400 .98rem/1.6 var(--book);background:rgba(7,4,5,.6);border:1px solid var(--hair);padding:18px;max-height:340px;overflow:auto;color:var(--text)}
+.done .actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+
+/* EPILOGUE / contact */
+.epilogue{text-align:center}
+.epilogue .big{font:400 clamp(3rem,8vw,5.6rem)/1 var(--script);color:var(--gold-hi);text-shadow:0 0 40px rgba(252,192,108,.2)}
+.epilogue .big em{font-style:normal;color:var(--rose);text-shadow:0 0 40px rgba(216,0,0,.4)}
+.epilogue .lede{color:var(--dim);font-style:italic;margin-top:14px}
+.calling{display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(14px,3vw,28px);margin-top:clamp(30px,5vw,44px)}
+.card{display:grid;gap:6px;justify-items:center;min-width:220px;padding:22px 26px;border:1px solid var(--hair);border-radius:2px;text-decoration:none;background:rgba(18,7,10,.6);transition:border-color .25s,background .25s}
+a.card:hover{border-color:var(--gold);background:rgba(43,7,14,.6)}
+.card .k{font:500 .72rem/1 var(--book);letter-spacing:.28em;text-transform:uppercase;color:var(--gold)}
+.card .v{font:italic 500 1.2rem/1.3 var(--head);color:var(--parchment);word-break:break-all}
+.copy{margin-top:4px;font:500 .66rem/1 var(--book);letter-spacing:.2em;text-transform:uppercase;border:1px solid rgba(252,192,108,.5);background:transparent;color:var(--gold-hi);padding:7px 12px;cursor:pointer;border-radius:2px}
+.studio{padding-block:0 clamp(50px,8vw,80px)}
+.ad{max-width:820px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;gap:clamp(18px,3vw,32px);align-items:center;padding:clamp(20px,3vw,28px) clamp(20px,3.4vw,34px);border:1px solid var(--hair);border-radius:2px;background:linear-gradient(135deg,rgba(18,7,10,.9),rgba(43,7,14,.55))}
+@media (max-width:680px){.ad{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.ad .v{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--gold);font:500 1.7rem/1 var(--head);color:var(--gold-hi)}
+.ad .k{font:500 .7rem/1 var(--book);letter-spacing:.3em;text-transform:uppercase;color:var(--dim)}
+.ad .n{font:500 1.25rem/1.2 var(--head);letter-spacing:.22em;color:var(--parchment);margin:6px 0 4px}
+.ad .n small{font-size:.6em;letter-spacing:.12em;vertical-align:.5em;margin-left:2px}
+.ad p{color:var(--dim);font-size:1rem;font-style:italic}
+.ad .btn{padding:13px 20px;font-size:.72rem;letter-spacing:.2em;white-space:nowrap}
+footer{border-top:1px solid var(--hair);padding-block:30px;text-align:center;display:grid;gap:8px}
+footer .credit{font:500 .7rem/1 var(--book);letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+footer .credit a{color:var(--gold-hi);text-decoration:none;border-bottom:1px solid rgba(252,192,108,.4);padding-bottom:2px}
+footer .credit a:hover{border-color:var(--gold-hi)}
+footer .motto{font:italic 500 1.1rem/1.4 var(--head);color:var(--gold-hi)}
+footer small{font:500 .7rem/1 var(--book);letter-spacing:.24em;text-transform:uppercase;color:var(--dim)}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--parchment);color:var(--ink);padding:10px 18px;border-radius:2px;font-size:.95rem;z-index:50}
+</style>
+</head>
+<body>
+
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="heart" viewBox="0 0 24 24"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></symbol>
+</svg>
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<div class="topbar">
+  <div class="wrap">
+    <nav class="left" aria-label="Chapters, part one"><a href="#the-voice">The voice</a><a href="#contents">Her worlds</a></nav>
+    <a class="mark" href="#top"><b>MAES</b><i>Hearts</i></a>
+    <nav class="right" aria-label="Chapters, part two"><a href="#collection">Collection</a><a href="#letter">Work with me</a></nav>
+    <a class="btn btn-blood book-mobile" href="#letter">Book Maes</a>
+  </div>
+</div>
+
+<header class="prologue" id="top">
+  <div class="wrap">
+    <span class="sc">Prologue · An audiobook narrator</span>
+    <h1 class="title"><span class="maes">MAES</span><span class="tie" aria-hidden="true"></span><span class="hearts">Hearts</span></h1>
+    <div class="cameo-row">
+      <p class="whisper l"><b>Every pause</b>carries tension.</p>
+      <div class="cameo"><img src="img/headshot.jpg" alt="Maes Hearts, audiobook narrator" width="900" height="1125"><span class="rose"><svg><use href="#heart"/></svg></span></div>
+      <p class="whisper r"><b>Every whisper</b>has meaning.</p>
+    </div>
+    <p class="tagline">Your new favorite voice<small>Forbidden romance, dangerous worlds and love stories with everything at stake.</small></p>
+    <div class="actions">
+      <a class="btn btn-blood" href="#letter"><svg><use href="#heart"/></svg>Write to Maes</a>
+      <a class="btn btn-gilt" href="#the-voice">Begin the story</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- CHAPTER ONE -->
+  <section id="the-voice">
+    <div class="narrow">
+      <div class="chapter">
+        <span class="num">Chapter <i>I</i></span>
+        <h2>The Maes Hearts <span class="s">experience</span></h2>
+      </div>
+      <div class="voice-seal"><img src="img/logo.jpg" alt="Maes Hearts seal: a gold rose in a gold ring with MAES HEARTS, AUDIOBOOK NARRATOR and two heart-shaped ladybugs" loading="lazy"></div>
+      <p class="opening">The goal isn't simply to read the words on the page. It's to make the listener <em>feel</em> them.</p>
+      <div class="prose">
+        <p>Every pause carries tension. Every whisper has meaning. Every character deserves a voice that reveals what lies beneath the dialogue.</p>
+        <p>Maes Hearts brings an instinctive understanding of emotional storytelling to every performance, capturing attraction, vulnerability, danger, heartbreak, passion, and the moments when everything changes.</p>
+        <p>For authors, that means a narrator who respects the world you've created while bringing her own performance artistry to the characters you've entrusted to her.</p>
+        <p>Whether your story takes listeners into a forbidden romance, a dangerous supernatural world, a dark and seductive fantasy, or a love story where the stakes are anything but ordinary, Maes Hearts creates performances designed to captivate from the first word to the final chapter.</p>
+        <div class="flourish" aria-hidden="true"><svg><use href="#heart"/></svg></div>
+        <p class="triad"><span>Stories that stay.</span><span>Voices that touch.</span><span>Hearts that connect.</span></p>
+      </div>
+      <dl class="particulars">
+        <div><dt>Genres</dt><dd>Open to all genres, depending on the plot</dd></div>
+        <div><dt>Formats</dt><dd><span>Solo</span> <span>Dual POV</span> <span>Duet</span> <span>Multi-cast</span></dd></div>
+        <div><dt>Home</dt><dd>Florida</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- CHAPTER TWO -->
+  <section id="contents" class="contents-wrap">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="num">Chapter <i>II</i></span>
+        <h2>The worlds she <span class="s">steps into</span></h2>
+        <p>Every genre is welcome when the plot calls to her. These are the stories she was made for.</p>
+      </div>
+      <ol class="toc">
+        <li><div class="line"><span class="t">Forbidden romance</span><span class="dots"></span><span class="pg">I</span></div><p class="d">Attraction that shouldn't happen, and the tension of every moment it almost does.</p></li>
+        <li><div class="line"><span class="t">Dangerous supernatural worlds</span><span class="dots"></span><span class="pg">II</span></div><p class="d">Ancient powers, creatures in the dark, and characters with something to hide.</p></li>
+        <li><div class="line"><span class="t">Dark &amp; seductive fantasy</span><span class="dots"></span><span class="pg">III</span></div><p class="d">Lush, shadowed worlds where desire and danger walk side by side.</p></li>
+        <li><div class="line"><span class="t">Love with everything at stake</span><span class="dots"></span><span class="pg">IV</span></div><p class="d">Love stories where the stakes are anything but ordinary.</p></li>
+      </ol>
+      <p class="feelings" aria-label="Moments she performs"><span>attraction</span> <span>vulnerability</span> <span>danger</span> <span>heartbreak</span> <span>passion</span></p>
+    </div>
+  </section>
+
+  <!-- CHAPTER THREE -->
+  <section id="collection">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="num">Chapter <i>III</i></span>
+        <h2>The <span class="s">collection</span></h2>
+        <p id="collection-lede">Audiobooks narrated by Maes Hearts.</p>
+      </div>
+      <div class="shelf" id="shelf"></div>
+      <div class="soon-wrap" id="soon-wrap" hidden>
+        <div class="flourish" aria-hidden="true"><svg><use href="#heart"/></svg></div>
+        <h3 class="soon-head">Coming <span class="s">soon</span></h3>
+        <p class="soon-lede">Press play for a first listen.</p>
+        <div class="shelf" id="shelf-soon"></div>
+      </div>
+      <div class="awaiting" id="awaiting" hidden>
+        <svg class="candle" viewBox="0 0 64 120" aria-hidden="true">
+          <defs><radialGradient id="glow" cx="50%" cy="40%" r="50%"><stop offset="0" stop-color="#FCC06C" stop-opacity=".55"/><stop offset="1" stop-color="#FCC06C" stop-opacity="0"/></radialGradient></defs>
+          <circle cx="32" cy="26" r="28" fill="url(#glow)"/>
+          <path class="flame" d="M32 8c5 8 8 12 8 18a8 8 0 0 1-16 0c0-6 3-10 8-18z" fill="#FCC06C"/>
+          <path class="flame" d="M32 18c2.5 4 4 6 4 9a4 4 0 0 1-8 0c0-3 1.5-5 4-9z" fill="#D80000"/>
+          <rect x="31" y="34" width="2" height="6" fill="#3a2a20"/>
+          <path d="M20 40h24v64a4 4 0 0 1-4 4H24a4 4 0 0 1-4-4z" fill="#780000"/>
+          <path d="M20 40h24v6c-3 0-3 6-6 6s-2-4-6-4-3 8-6 8-3-6-6-6z" fill="#A00000"/>
+          <rect x="12" y="104" width="40" height="6" rx="2" fill="#FCC06C"/>
+        </svg>
+        <h3>New titles are on the way</h3>
+        <p>Maes's narrated audiobooks will be featured here as they're released. Follow along for release news, or visit her narrator profile on ACX.</p>
+        <div class="actions">
+          <a class="btn btn-gilt" href="https://www.tiktok.com/@maes_hearts" target="_blank" rel="noopener">TikTok ↗</a>
+          <a class="btn btn-gilt" href="https://www.acx.com/narrator?p=A2HSB4VN6NW23Q" target="_blank" rel="noopener">ACX profile ↗</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHAPTER FOUR -->
+  <section id="letter">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="num">Chapter <i>IV</i></span>
+        <h2>Your story deserves a voice that <span class="s">feels it</span></h2>
+        <p>Every project is quoted individually. Write to me about your book and I'll reply with a quote and a custom audition.</p>
+      </div>
+      <div class="terms">
+        <div><b>PFH or Royalty Share Plus</b><span>Per finished hour, or Royalty Share Plus for qualifying productions</span></div>
+        <div><b>Payment plans</b><span>Available with an initial deposit</span></div>
+        <div><b>Sound effects</b><span>Added on request, for the moments that need them</span></div>
+        <div><b>Custom auditions</b><span>Hear your characters before you decide</span></div>
+      </div>
+
+      <div class="letter">
+        <div id="write">
+          <p class="salutation">Dear Maes,</p>
+          <p class="intro">Tell me about your story. A working title is perfectly fine.</p>
+          <form id="inq" novalidate>
+            <div class="pair">
+              <div class="f"><label for="f-name">My name is</label><input id="f-name" name="name" autocomplete="name" required placeholder="Your name"></div>
+              <div class="f"><label for="f-email">Reply to me at</label><input id="f-email" name="email" type="email" autocomplete="email" required placeholder="you@example.com"></div>
+            </div>
+            <div class="pair">
+              <div class="f"><label for="f-title">My book is called</label><input id="f-title" name="title" required placeholder="Title"></div>
+              <div class="f"><label for="f-genre">It's a</label>
+                <select id="f-genre" name="genre"><option>Romance</option><option>Dark romance</option><option>Paranormal / Supernatural</option><option>Fantasy / Romantasy</option><option>Contemporary fiction</option><option>Thriller / Suspense</option><option>Something else</option></select></div>
+            </div>
+            <div class="pair">
+              <div class="f"><label for="f-words">Word count <span class="hint">(approx.)</span></label><input id="f-words" name="words" type="number" min="1000" step="500" inputmode="numeric" placeholder="80,000"></div>
+              <div class="f"><label for="f-date">I'm hoping to finish by</label><input id="f-date" name="deadline" type="date"></div>
+            </div>
+            <p class="est" aria-live="polite">That's about <b id="est">–</b> finished hours of listening.</p>
+            <div class="f">
+              <span class="legend" id="cast-l">Solo or partnered</span>
+              <div class="choices" role="radiogroup" aria-labelledby="cast-l">
+                <label><input type="radio" name="cast" value="Solo" checked> Solo</label>
+                <label><input type="radio" name="cast" value="Dual POV"> Dual POV</label>
+                <label><input type="radio" name="cast" value="Duet"> Duet</label>
+                <label><input type="radio" name="cast" value="Multi-cast"> Multi-cast</label>
+              </div>
+            </div>
+            <div class="f">
+              <span class="legend" id="files-l">I'd like</span>
+              <div class="choices" role="radiogroup" aria-labelledby="files-l">
+                <label><input type="radio" name="files" value="Edited and mastered audio" checked> Edited &amp; mastered audio</label>
+                <label><input type="radio" name="files" value="Raw files"> Raw files</label>
+                <label><input type="radio" name="files" value="Not sure yet"> Not sure yet</label>
+              </div>
+            </div>
+            <div class="pair">
+              <div class="f"><label for="f-pay">Payment preference</label>
+                <select id="f-pay" name="pay"><option>PFH</option><option>Royalty Share Plus</option><option>Let's discuss</option></select></div>
+              <div class="f"><label for="f-plan">Payment plan</label>
+                <select id="f-plan" name="plan"><option>Not needed</option><option>Yes, interested</option><option>Maybe</option></select></div>
+            </div>
+            <div class="choices"><label><input type="checkbox" name="sfx" value="Yes"> I'm interested in sound effects</label></div>
+            <div class="f"><label for="f-notes">About my story <span class="hint">(characters, heat level, accents, your vision)</span></label><textarea id="f-notes" name="notes"></textarea></div>
+            <p class="err" id="err" hidden></p>
+            <div class="sign">
+              <span class="with">With love,</span>
+              <button class="seal" type="submit" id="send"><span class="wax"><svg viewBox="0 0 24 24"><use href="#heart"/></svg></span><span id="send-label">Seal &amp; send</span></button>
+            </div>
+          </form>
+        </div>
+
+        <div class="done" id="done" hidden>
+          <span class="sc" id="done-label">Your letter is ready</span>
+          <h3>Thank you. Your story is in good hands.</h3>
+          <p class="intro" id="done-msg" style="margin:0"></p>
+          <pre id="sum"></pre>
+          <div class="actions">
+            <button class="btn btn-blood" type="button" id="copy-sum">Copy letter</button>
+            <button class="btn btn-gilt" type="button" id="edit">Edit</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EPILOGUE -->
+  <section id="epilogue" class="epilogue">
+    <div class="wrap">
+      <span class="sc">Epilogue</span>
+      <div class="flourish" aria-hidden="true"><svg><use href="#heart"/></svg></div>
+      <h2 class="big">Let's make <em>magic</em></h2>
+      <p class="lede">For bookings, auditions and collaborations.</p>
+      <div class="calling">
+        <div class="card"><span class="k">Email</span><span class="v" id="c-email">Maeshearts@yahoo.com</span><button class="copy" type="button" data-copy="c-email">Copy</button></div>
+        <a class="card" href="https://www.tiktok.com/@maes_hearts" target="_blank" rel="noopener"><span class="k">TikTok</span><span class="v">@maes_hearts ↗</span></a>
+        <a class="card" href="https://www.acx.com/narrator?p=A2HSB4VN6NW23Q" target="_blank" rel="noopener"><span class="k">ACX</span><span class="v">Narrator profile ↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DESIGN CREDIT / ADVERTISEMENT -->
+  <aside class="studio" aria-label="Website designer">
+    <div class="wrap">
+      <div class="ad">
+        <span class="v" aria-hidden="true">V</span>
+        <div>
+          <div class="k">Website &amp; branding by</div>
+          <div class="n">VISIONIARY<small>LLC</small></div>
+          <p>Websites, branding, book covers and book editing for narrators and authors. Making your dreams a reality. Black woman-owned.</p>
+        </div>
+        <a class="btn btn-gilt visioniary-link" href="#" target="_blank" rel="noopener">Visit Visioniary ↗</a>
+      </div>
+    </div>
+  </aside>
+</main>
+
+<footer>
+  <p class="motto">Stories that stay. Voices that touch. Hearts that connect.</p>
+  <small>© <span id="yr">2026</span> Maes Hearts · Audiobook narrator · Florida</small>
+  <span class="credit">Designed by <a class="visioniary-link" href="#" target="_blank" rel="noopener">Visioniary LLC</a></span>
+</footer>
+<div class="toast" id="toast" hidden></div>
+
+<script>
+/* ==============================================================
+   THE COLLECTION: add each audiobook by copying this block into the list.
+   { title:"Book Title", series:"Series Name, Book 1", author:"Author Name",
+     part:"Solo narrator", cover:"img/covers/book-title.jpg",
+     url:"https://www.audible.com/pd/...", status:"released" }
+   status: "released" shows a Listen link; "soon" shows "Coming soon"
+   and places the title under "Coming soon" below the released titles.
+   clip:   optional MP3 sample, e.g. "audio/book-title.mp3" (adds a play button).
+   cover:  leave "" if there's no cover yet; a designed placeholder shows.
+   While the list is empty, the page shows "New titles are on the way".
+   ============================================================== */
+const CATALOG = [
+  { title:"Open for Business", series:"A Ruevielle Romance", author:"Britt W.",
+    part:"Solo narrator", cover:"img/covers/open-for-business.jpg",
+    url:"https://www.audible.com/search?keywords=Open+for+Business+Britt+W", status:"released" },
+  { title:"Housewives of the Drug Game", series:"Azul & Justice", author:"C. Wilson",
+    part:"Solo narrator", cover:"img/covers/housewives-of-the-drug-game.jpg",
+    url:"https://www.audible.com/search?keywords=Housewives+of+the+Drug+Game+Azul+Justice+C+Wilson", status:"released" },
+  { title:"Just a Misunderstanding", series:"", author:"Zanalise Veil",
+    part:"Solo narrator", cover:"img/covers/just-a-misunderstanding.jpg",
+    url:"https://www.audible.com/search?keywords=Just+a+Misunderstanding+Zanalise+Veil", status:"released" },
+  { title:"The Holiday Guest", series:"The Swingwood Estate Series", author:"Bre Coleman",
+    part:"Solo narrator", cover:"img/covers/the-holiday-guest.jpg",
+    url:"https://www.audible.com/search?keywords=The+Holiday+Guest+Bre+Coleman", status:"released" },
+  { title:"Hired by My Rich Baby Daddy", series:"Book 1", author:"T. Michelle",
+    part:"Dual narration", cover:"img/covers/hired-by-my-rich-baby-daddy.jpg", clip:"audio/hired-by-my-rich-baby-daddy.mp3", status:"soon" },
+  { title:"The Sweetest Violation", series:"", author:"CYN",
+    part:"Dual narration", cover:"img/covers/the-sweetest-violation.jpg", clip:"audio/the-sweetest-violation.mp3", status:"soon" },
+  { title:"Shifting", series:"", author:"Jean Isabella",
+    part:"Solo narrator", cover:"img/covers/shifting.jpg", clip:"audio/shifting.mp3", status:"soon" },
+  { title:"Miss Mary Mack", series:"", author:"Deandre Kralevic",
+    part:"Solo narrator", cover:"img/covers/miss-mary-mack.jpg", clip:"audio/miss-mary-mack.mp3", status:"soon" }
+];
+
+const INQUIRY_EMAIL = "Maeshearts@yahoo.com";
+/* Visioniary LLC website (design credit + ad). */
+const VISIONIARY_URL = "https://visioniary.vercel.app/";
+/* Paste Maes's Formspree form URL here so inquiries go to her inbox. */
+const FORM_ENDPOINT = "https://formspree.io/f/moeepyyd";
+
+const $ = id => document.getElementById(id);
+$("yr").textContent = new Date().getFullYear();
+document.querySelectorAll(".visioniary-link").forEach(a => {
+  if (VISIONIARY_URL) a.href = VISIONIARY_URL;
+  else if (a.classList.contains("btn")) a.hidden = true;
+  else a.replaceWith(document.createTextNode(a.textContent));
+});
+
+/* collection */
+const shelf = $("shelf");
+if (!CATALOG.length) { $("awaiting").hidden = false; shelf.hidden = true; }
+else $("collection-lede").textContent = "Audiobooks narrated by Maes Hearts. Select a title to listen.";
+const shelfSoon = $("shelf-soon");
+const player = new Audio(); player.preload = "none";
+let playingCard = null;
+const fmt = x => { if (!isFinite(x)) return "0:00"; x = Math.floor(x); return Math.floor(x / 60) + ":" + String(x % 60).padStart(2, "0"); };
+const HEART = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7.5-4.6-9.6-9.2C.9 8.4 3 4.5 6.7 4.5c2.1 0 3.6 1.2 5.3 3.1 1.7-1.9 3.2-3.1 5.3-3.1 3.7 0 5.8 3.9 4.3 7.3C19.5 16.4 12 21 12 21z"/></svg>';
+function stopCard(card){ if (!card) return; card.classList.remove("playing"); card.querySelector(".play").setAttribute("aria-label", "Play sample"); }
+player.addEventListener("timeupdate", () => {
+  if (!playingCard) return;
+  const p = player.duration ? player.currentTime / player.duration : 0;
+  playingCard.querySelector(".bar i").style.width = (p * 100) + "%";
+  playingCard.querySelector(".time").textContent = fmt(player.currentTime) + " / " + fmt(player.duration);
+});
+player.addEventListener("ended", () => { stopCard(playingCard); });
+player.addEventListener("pause", () => { stopCard(playingCard); });
+player.addEventListener("play", () => { if (playingCard) { playingCard.classList.add("playing"); playingCard.querySelector(".play").setAttribute("aria-label", "Pause sample"); } });
+
+CATALOG.forEach(t => {
+  const el = document.createElement("article"); el.className = "book";
+  const cover = document.createElement("div"); cover.className = "cover";
+  if (t.cover) { const im = new Image(); im.loading = "lazy"; im.src = t.cover; im.alt = t.title + " audiobook cover"; cover.appendChild(im); }
+  else {
+    cover.classList.add("blank");
+    cover.innerHTML = HEART + '<span class="bt"></span><span class="ba"></span>';
+    cover.querySelector(".bt").textContent = t.title;
+    cover.querySelector(".ba").textContent = t.author ? "by " + t.author : "";
+  }
+  el.appendChild(cover);
+  el.insertAdjacentHTML("beforeend", '<h3></h3><div class="by"></div><div class="part"></div>');
+  el.querySelector("h3").textContent = t.title;
+  el.querySelector(".by").textContent = [t.series, t.author && "by " + t.author].filter(Boolean).join(" · ");
+  el.querySelector(".part").textContent = t.part || "";
+  if (t.clip) {
+    if (!t.cover) el.classList.add("cover-blank-play");
+    const b = document.createElement("button"); b.type = "button"; b.className = "play"; b.setAttribute("aria-label", "Play sample of " + t.title);
+    const gid = "gl" + Math.random().toString(36).slice(2, 8);
+    const grad = '<defs><linearGradient id="' + gid + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFF0C8"/><stop offset=".4" stop-color="#FCC06C"/><stop offset=".75" stop-color="#E09A3E"/><stop offset="1" stop-color="#FFE3A3"/></linearGradient></defs>';
+    b.innerHTML = '<svg class="i-play" viewBox="0 0 24 24" aria-hidden="true">' + grad + '<path fill="url(#' + gid + ')" d="M7 4.5v15l13-7.5z"/></svg><svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true">' + grad.replace(gid, gid + "p") + '<path fill="url(#' + gid + 'p)" d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>';
+    cover.appendChild(b);
+    const sm = document.createElement("div"); sm.className = "sample";
+    sm.innerHTML = '<div class="bar" role="presentation"><i></i></div><span class="time">Sample</span>';
+    el.appendChild(sm);
+    b.addEventListener("click", () => {
+      if (playingCard === el && !player.paused) { player.pause(); return; }
+      if (playingCard !== el) { stopCard(playingCard); player.src = t.clip; playingCard = el; }
+      player.play().catch(() => {});
+    });
+    sm.querySelector(".bar").addEventListener("click", e => {
+      if (playingCard !== el || !player.duration) return;
+      const r = e.currentTarget.getBoundingClientRect(); player.currentTime = ((e.clientX - r.left) / r.width) * player.duration;
+    });
+  }
+  if (t.status === "soon") { const s = document.createElement("span"); s.className = "soon"; s.textContent = "Coming soon"; el.appendChild(s); }
+  else if (t.url) { const a = document.createElement("a"); a.className = "listen"; a.href = t.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = "Listen ↗"; el.appendChild(a); }
+  (t.status === "soon" ? shelfSoon : shelf).appendChild(el);
+});
+if (shelfSoon.children.length) $("soon-wrap").hidden = false;
+
+/* drifting rose petals */
+(function(){
+  const c = $("petals"), ctx = c.getContext("2d");
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) { c.remove(); return; }
+  let W, H, dpr = Math.min(devicePixelRatio || 1, 2);
+  const N = innerWidth < 600 ? 9 : 16, P = [];
+  function size(){ W = c.width = innerWidth * dpr; H = c.height = innerHeight * dpr; c.style.width = innerWidth + "px"; c.style.height = innerHeight + "px"; }
+  function spawn(p, top){ p.x = Math.random() * W; p.y = top ? -20 * dpr : Math.random() * H; p.s = (6 + Math.random() * 9) * dpr; p.vy = (.25 + Math.random() * .45) * dpr; p.vx = (Math.random() - .5) * .3 * dpr; p.r = Math.random() * 6.28; p.vr = (Math.random() - .5) * .02; p.w = Math.random() * 6.28; p.a = .25 + Math.random() * .35; p.hue = Math.random() < .8 ? 355 : 40; return p; }
+  size(); addEventListener("resize", size);
+  for (let i = 0; i < N; i++) P.push(spawn({}, false));
+  function draw(){
+    ctx.clearRect(0, 0, W, H);
+    for (const p of P) {
+      p.w += .015; p.x += p.vx + Math.sin(p.w) * .4 * dpr; p.y += p.vy; p.r += p.vr;
+      if (p.y > H + 30 * dpr) spawn(p, true);
+      ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(p.r); ctx.scale(1, .6 + .4 * Math.sin(p.w * 2));
+      ctx.globalAlpha = p.a;
+      const g = ctx.createRadialGradient(-p.s * .2, -p.s * .2, 0, 0, 0, p.s);
+      if (p.hue === 40) { g.addColorStop(0, "#FCC06C"); g.addColorStop(1, "#8a5a1c"); }
+      else { g.addColorStop(0, "#D80000"); g.addColorStop(1, "#600000"); }
+      ctx.fillStyle = g;
+      ctx.beginPath(); ctx.moveTo(0, -p.s); ctx.bezierCurveTo(p.s, -p.s * .6, p.s * .7, p.s * .7, 0, p.s); ctx.bezierCurveTo(-p.s * .7, p.s * .7, -p.s, -p.s * .6, 0, -p.s); ctx.fill();
+      ctx.restore();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* copy helpers */
+const toast = $("toast"); let tt;
+function say(m){ toast.textContent = m; toast.hidden = false; clearTimeout(tt); tt = setTimeout(() => toast.hidden = true, 2200); }
+function sel(n){ const r = document.createRange(); r.selectNodeContents(n); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+function copyNode(n){
+  const t = n.textContent;
+  if (navigator.clipboard?.writeText) navigator.clipboard.writeText(t).then(() => say("Copied"), () => { sel(n); say("Selected. Press Ctrl/Cmd+C to copy"); });
+  else { sel(n); say("Selected. Press Ctrl/Cmd+C to copy"); }
+}
+document.querySelectorAll("[data-copy]").forEach(b => b.addEventListener("click", () => copyNode($(b.dataset.copy))));
+
+/* the letter */
+const form = $("inq"), words = $("f-words");
+words.addEventListener("input", () => { const w = +words.value || 0; $("est").textContent = w ? (w / 9300).toFixed(1) : "–"; });
+$("f-date").min = new Date().toISOString().slice(0, 10);
+
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = new FormData(form), miss = [];
+  const name = f.get("name").trim(), em = f.get("email").trim(), title = f.get("title").trim();
+  if (!name) miss.push("your name");
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) miss.push("a valid email");
+  if (!title) miss.push("your book's title");
+  if (miss.length) { $("err").textContent = "Please add " + miss.join(", ") + "."; $("err").hidden = false; return; }
+  $("err").hidden = true;
+  const w = +f.get("words") || 0;
+  const text = `Narration inquiry: ${title}
+
+From: ${name} <${em}>
+Genre: ${f.get("genre")}
+Word count: ${w ? w.toLocaleString() + " (≈ " + (w / 9300).toFixed(1) + " finished hours)" : "Not sure yet"}
+Initial deadline goal: ${f.get("deadline") || "Flexible"}
+Solo or partnered: ${f.get("cast")}
+Deliverables: ${f.get("files")}
+Payment preference: ${f.get("pay")}
+Payment plan: ${f.get("plan")}
+Sound effects: ${f.get("sfx") ? "Interested" : "Not requested"}
+
+About the story:
+${f.get("notes").trim() || "(not provided)"}`;
+
+  let sent = false;
+  const btn = $("send");
+  if (FORM_ENDPOINT) {
+    btn.disabled = true; $("send-label").textContent = "Sending…";
+    try {
+      f.append("_subject", "Narration inquiry: " + title);
+      f.append("estimated_finished_hours", w ? (w / 9300).toFixed(1) : "");
+      const r = await fetch(FORM_ENDPOINT, { method: "POST", headers: { Accept: "application/json" }, body: f });
+      sent = r.ok;
+    } catch (_) {}
+    btn.disabled = false; $("send-label").textContent = "Seal & send";
+  }
+  $("done-label").textContent = sent ? "Your letter was sent" : "Your letter is ready";
+  $("done-msg").textContent = sent
+    ? "I'll be in touch soon. Here's a copy for your records."
+    : "Copy your letter below and email it to " + INQUIRY_EMAIL + ". I'll be in touch soon.";
+  $("sum").textContent = text; $("write").hidden = true; $("done").hidden = false;
+  $("letter").scrollIntoView({ behavior: "smooth", block: "start" });
+});
+$("copy-sum").addEventListener("click", () => copyNode($("sum")));
+$("edit").addEventListener("click", () => { $("done").hidden = true; $("write").hidden = false; });
+</script>
+
+</body>
+</html>
